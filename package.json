@@ -1,5 +1,5 @@
 {
-  "name": "prisma-typegraphql-input-repro ",
+  "name": "prisma-typegraphql-input-repro",
   "scripts": {
     "start": "ts-node ./index.ts"
   },
