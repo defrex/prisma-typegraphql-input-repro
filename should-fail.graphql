@@ -1,0 +1,5 @@
+mutation CreatePost {
+  createPost(data: { title: "1" }) {
+    id
+  }
+}
