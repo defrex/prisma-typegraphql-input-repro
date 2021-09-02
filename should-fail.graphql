@@ -1,5 +1,5 @@
 mutation CreatePost {
-  createPost(data: { title: "1" }) {
+  createPost(data: { title: "notten" }) {
     id
   }
 }
