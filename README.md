@@ -1,12 +1,44 @@
 # prisma-typegraphql Input Validation Error Reproduction
 
-There are three main files here.
+Given a simple model
 
-prisma/schema.prisma
-https://github.com/defrex/prisma-typegraphql-input-repro/blob/main/prisma/schema.prisma
+```prisma
+model Post {
+  id    Int    @id @default(autoincrement())
+  title String
+}
+```
 
-index.ts
-https://github.com/defrex/prisma-typegraphql-input-repro/blob/main/index.ts
+and a simple string length validation decorator from `class-validator`
 
-should-fail.graphql
-https://github.com/defrex/prisma-typegraphql-input-repro/blob/main/should-fail.graphql
+```typescript
+applyInputTypesEnhanceMap({
+  PostCreateInput: {
+    fields: {
+      title: [MinLength(10)],
+    },
+  },
+});
+```
+
+I would expect the following mutation to return an error.
+
+```graphql
+mutation CreatePost {
+  createPost(data: { title: "1" }) {
+    id
+  }
+}
+```
+
+It does not.
+
+#### Steps to Reproduce
+
+```sh
+git clone git@github.com:defrex/prisma-typegraphql-input-repro.git
+cd prisma-typegraphql-input-repro
+
+npm install
+npm start
+```
