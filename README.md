@@ -25,7 +25,7 @@ I would expect the following mutation to return an error.
 
 ```graphql
 mutation CreatePost {
-  createPost(data: { title: "1" }) {
+  createPost(data: { title: "notten" }) {
     id
   }
 }
